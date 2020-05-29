@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf dist && rollup -c rollup.config.js",
+    "build:all": "rm -rf dist build && make && rollup -c rollup.config.js",
     "example:node": "node ./examples/node/index.js",
     "example:html": "open http://127.0.0.1:8080/examples/html/ && http-server"
   },
@@ -37,7 +38,8 @@
     "@rollup/plugin-babel": "^5.0.2",
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-sucrase": "^3.0.0",
-    "rollup": "^2.0.0"
+    "rollup": "^2.0.0",
+    "rollup-plugin-terser": "^6.1.0"
   },
   "dependencies": {
     "@types/yoga-layout": "^1.9.2"
