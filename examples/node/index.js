@@ -1,14 +1,5 @@
-# yoga-layout-wasm
-> yoga-layout webassembly module, for browser and node. fallback to asm.js in non-webassembly environment
-
-## Get Start
-
-```
-$ npm i yoga-layout-wasm --save
-```
-
-``` javascript
-import Yoga from 'yoga-layout-wasm'
+const path = require('path')
+const Yoga = require('../../dist/index')
 
 function test (yoga) {
   const Node = yoga.Node
@@ -37,14 +28,4 @@ function test (yoga) {
   // {left: 250, top: 0, width: 100, height: 100}
 }
 
-const urlToWasmFolder = 'node_modules/yoga-layout-wasm/build/'
-
-Yoga(urlToWasmFolder).then(test)
-```
-
-## Examples
-
-```
-$ npm run example:node
-$ npm run example:html
-```
+Yoga(path.resolve(__dirname, '../../build/')).then(test)

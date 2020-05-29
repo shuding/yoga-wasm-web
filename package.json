@@ -1,0 +1,45 @@
+{
+  "name": "yoga-layout-wasm",
+  "version": "1.9.3-alpha",
+  "description": "yoga-layout webassembly module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist && rollup -c rollup.config.js",
+    "example:node": "node ./examples/node/index.js",
+    "example:html": "open http://127.0.0.1:8080/examples/html/ && http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinqy520/yoga-layout-wasm.git"
+  },
+  "keywords": [
+    "webassembly",
+    "wasm",
+    "yoga-layout",
+    "yoga"
+  ],
+  "author": "Huang Qi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pinqy520/yoga-layout-wasm/issues"
+  },
+  "homepage": "https://github.com/pinqy520/yoga-layout-wasm#readme",
+  "files": [
+    "build",
+    "dist",
+    "package.json",
+    "index.d.ts",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "@rollup/plugin-babel": "^5.0.2",
+    "@rollup/plugin-commonjs": "^12.0.0",
+    "@rollup/plugin-sucrase": "^3.0.0",
+    "rollup": "^2.0.0"
+  },
+  "dependencies": {
+    "@types/yoga-layout": "^1.9.2"
+  }
+}
