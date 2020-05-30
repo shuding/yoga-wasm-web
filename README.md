@@ -37,11 +37,48 @@ function test (yoga) {
   // {left: 250, top: 0, width: 100, height: 100}
 }
 
-const urlToWasmFolder = 'node_modules/yoga-layout-wasm/dist/'
+const config_1 = {
+  dir: 'node_modules/yoga-layout-wasm/dist/'
+}
 
-Yoga(urlToWasmFolder).then(test)
+// or 
+const config_2 = {
+  wasm: 'node_modules/yoga-layout-wasm/dist/yoga.wasm',
+  asm: 'node_modules/yoga-layout-wasm/dist/yoga.wasm.js',
+}
+
+Yoga(config_1 /* or config_2 */).then(test)
 ```
 
+### Webpack
+
+``` javascript
+// ... webpack.config.js
+  {
+    test: /\.(wasm|wasm\.js)$/,
+    type: 'javascript/auto',
+    use: [
+      {
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[md5:hash:base64:6].[ext]',
+        },
+      },
+    ],
+  }
+// ...
+```
+
+``` javascript
+// *.js
+import init from 'yoga-layout-wasm'
+init({
+  wasm: require('yoga-layout-wasm/dist/yoga.wasm'),
+  asm: require('yoga-layout-wasm/dist/yoga.wasm.js'),
+}).then(yoga => {
+  // ...
+})
+```
 ## Examples
 
 ```
