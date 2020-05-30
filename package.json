@@ -3,13 +3,13 @@
   "version": "1.9.3-alpha.1",
   "description": "yoga-layout webassembly module",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "types": "index.d.ts",
   "typings": "index.d.ts",
   "scripts": {
     "build": "rm -rf dist && rollup -c rollup.config.js",
     "build:all": "rm -rf dist build && make && rollup -c rollup.config.js",
     "example:node": "node ./examples/node/index.js",
+    "example:node:asm": "node ./examples/node/asm.js",
     "example:html": "open http://127.0.0.1:8080/examples/html/ && http-server"
   },
   "repository": {

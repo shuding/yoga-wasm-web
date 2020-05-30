@@ -31,20 +31,33 @@ export default [
     input: 'src/index.js',
     output: [
       {
-        file: pkg.module,
-        format: 'esm',
-      },
-    ],
-  },
-  {
-    input: 'src/index.js',
-    output: [
-      {
         file: pkg.main,
         format: 'cjs',
       },
       {
         file: 'dist/index.umd.js',
+        format: 'iife',
+        name: 'Yoga',
+      },
+    ],
+    plugins: [
+      babel({
+        babelrc: false,
+        babelHelpers: 'bundled',
+        presets: ['@babel/preset-env'],
+      }),
+      terser(),
+    ],
+  },
+  {
+    input: 'src/asm.js',
+    output: [
+      {
+        file: 'asm.js',
+        format: 'cjs',
+      },
+      {
+        file: 'dist/asm.umd.js',
         format: 'iife',
         name: 'Yoga',
       },
