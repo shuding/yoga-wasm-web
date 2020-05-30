@@ -10,12 +10,12 @@ $ npm i yoga-layout-wasm --save
 ``` javascript
 import Yoga from 'yoga-layout-wasm'
 
-function test (yoga) {
-  const Node = yoga.Node
+function test () {
+  const Node = Yoga.Node
   const root = Node.create();
   root.setWidth(500);
   root.setHeight(300);
-  root.setJustifyContent(yoga.JUSTIFY_CENTER);
+  root.setJustifyContent(Yoga.JUSTIFY_CENTER);
   
   const node1 = Node.create();
   node1.setWidth(100);
@@ -39,7 +39,7 @@ function test (yoga) {
 
 const wasmFilePath = 'node_modules/yoga-layout-wasm/dist/yoga.wasm'
 
-Yoga(wasmFilePath).then(test)
+Yoga.init(wasmFilePath).then(test)
 ```
 
 ### Single `asm.js` module
@@ -48,8 +48,8 @@ Yoga(wasmFilePath).then(test)
 // *.js
 import Yoga from 'yoga-layout-wasm/asm'
 
-Yoga.then(yoga => {
-  // ...
+Yoga.init().then(yoga => {
+  // ... test()
 })
 ```
 
@@ -76,10 +76,10 @@ Yoga.then(yoga => {
 // *.js
   typeof WebAssembly === 'undefined' ?
     import('yoga-layout-wasm/asm')
-      .then(mod => mod.default)
-      .then(init) :
+      .then(mod => mod.default.init())
+      .then(test) :
     import('yoga-layout-wasm')
-      .then(mod => mod.default(require('yoga-layout-wasm/dist/yoga.wasm')))
+      .then(mod => mod.default.init(require('yoga-layout-wasm/dist/yoga.wasm')))
       .then(test);
 ```
 
