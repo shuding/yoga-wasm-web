@@ -1,6 +1,6 @@
 {
   "name": "yoga-layout-wasm",
-  "version": "1.9.3-alpha.2",
+  "version": "1.9.3-alpha.3",
   "description": "yoga-layout webassembly module",
   "main": "dist/index.js",
   "types": "index.d.ts",
