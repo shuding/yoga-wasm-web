@@ -80,11 +80,11 @@ init({
 })
 ```
 
-## Single `asm.js` module
+### Single `asm.js` module
 
 ``` javascript
 // *.js
-import init from 'yoga-layout-wasm/asm'
+import Yoga from 'yoga-layout-wasm/asm'
 
 Yoga.then(yoga => {
   // ...
