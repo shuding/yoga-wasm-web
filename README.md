@@ -79,9 +79,22 @@ init({
   // ...
 })
 ```
+
+## Single `asm.js` module
+
+``` javascript
+// *.js
+import init from 'yoga-layout-wasm/asm'
+
+Yoga.then(yoga => {
+  // ...
+})
+```
+
 ## Examples
 
 ```
 $ npm run example:node
 $ npm run example:html
+$ npm run example:node:asm
 ```
