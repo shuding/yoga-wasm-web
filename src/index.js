@@ -5,19 +5,14 @@ function bind(name, proto) {
   return proto;
 }
 
-function initConfig(config) {
-  return config
-    ? function locateFile(name, dir) {
-        if (name === 'yoga.wasm' && config.wasm) {
-          return config.wasm;
-        } else if (name === 'yoga.wasm.js' && config.asm) {
-          return config.asm;
-        }
-        return (config.dir || dir || '') + name;
+function initConfig(filepath) {
+  return filepath
+    ? function locateFile() {
+        return filepath
       }
     : void 0;
 }
 
-export default function Yoga(config) {
-  return emscripten({ locateFile: initConfig(config) }).then(mod => entry(bind, mod));
+export default function Yoga(filepath) {
+  return emscripten({ locateFile: initConfig(filepath) }).then(mod => entry(bind, mod));
 }

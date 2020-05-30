@@ -6,7 +6,7 @@ wasm:
 	$(CC) yoga/yoga/*.cpp bindings/*.cc \
 		--bind -Os --memory-init-file 0 --llvm-lto 1 \
 		-Iyoga \
-		-s WASM=2 \
+		-s WASM=1 \
 		-s WASM_ASYNC_COMPILATION=1 \
 		-s DISABLE_EXCEPTION_CATCHING=1 \
 		-s AGGRESSIVE_VARIABLE_ELIMINATION=1 \

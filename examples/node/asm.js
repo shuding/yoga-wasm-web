@@ -27,6 +27,4 @@ function test (yoga) {
   // {left: 250, top: 0, width: 100, height: 100}
 }
 
-// Yoga(path.resolve(__dirname, '../../build/')).then(test)
-
 Yoga.then(test)

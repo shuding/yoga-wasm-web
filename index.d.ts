@@ -19,12 +19,6 @@ export {
 
 export type YogaStatic = typeof Yoga
 
-export type YogaWasmConfig = {
-  dir?: string
-  wasm?: string
-  asm?: string
-}
+function initYoga(filepath?: string): Promise<YogaStatic>
 
-function init(config?: YogaWasmConfig): Promise<YogaStatic>
-
-export = init
+export = initYoga
