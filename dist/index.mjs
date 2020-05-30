@@ -547,13 +547,21 @@ function bind(name, proto) {
   return proto;
 }
 
-function Yoga(path) {
-  if (path) {
-    if (path[path.length - 1] !== '/') {
-      path += '/';
-    }
-  }
-  return Module({ locateFile: (name, dir) => (path || dir) + name }).then(mod => entryCommon(bind, mod));
+function initConfig(config) {
+  return config
+    ? function locateFile(name, dir) {
+        if (name === 'yoga.wasm' && config.wasm) {
+          return config.wasm;
+        } else if (name === 'yoga.wasm.js' && config.asm) {
+          return config.asm;
+        }
+        return (config.dir || dir || '') + name;
+      }
+    : void 0;
+}
+
+function Yoga(config) {
+  return Module({ locateFile: initConfig(config) }).then(mod => entryCommon(bind, mod));
 }
 
 export default Yoga;
