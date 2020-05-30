@@ -37,7 +37,7 @@ function test (yoga) {
   // {left: 250, top: 0, width: 100, height: 100}
 }
 
-const urlToWasmFolder = 'node_modules/yoga-layout-wasm/build/'
+const urlToWasmFolder = 'node_modules/yoga-layout-wasm/dist/'
 
 Yoga(urlToWasmFolder).then(test)
 ```
