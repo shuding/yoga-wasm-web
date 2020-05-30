@@ -22,3 +22,5 @@ export type YogaStatic = typeof Yoga
 function initYoga(filepath?: string): Promise<YogaStatic>
 
 export = initYoga
+
+export default initYoga

@@ -22,3 +22,5 @@ export type YogaStatic = typeof Yoga
 const asmYoga: Promise<YogaStatic>
 
 export = asmYoga
+
+export default asmYoga

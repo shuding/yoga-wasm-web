@@ -37,25 +37,28 @@ function test (yoga) {
   // {left: 250, top: 0, width: 100, height: 100}
 }
 
-const config_1 = {
-  dir: 'node_modules/yoga-layout-wasm/dist/'
-}
+const wasmFilePath = 'node_modules/yoga-layout-wasm/dist/yoga.wasm'
 
-// or 
-const config_2 = {
-  wasm: 'node_modules/yoga-layout-wasm/dist/yoga.wasm',
-  asm: 'node_modules/yoga-layout-wasm/dist/yoga.wasm.js',
-}
-
-Yoga(config_1 /* or config_2 */).then(test)
+Yoga(wasmFilePath).then(test)
 ```
 
-### Webpack
+### Single `asm.js` module
+
+``` javascript
+// *.js
+import Yoga from 'yoga-layout-wasm/asm'
+
+Yoga.then(yoga => {
+  // ...
+})
+```
+
+### Webpack and Auto Fallback
 
 ``` javascript
 // ... webpack.config.js
   {
-    test: /\.(wasm|wasm\.js)$/,
+    test: /\.(wasm)$/,
     type: 'javascript/auto',
     use: [
       {
@@ -71,24 +74,13 @@ Yoga(config_1 /* or config_2 */).then(test)
 
 ``` javascript
 // *.js
-import init from 'yoga-layout-wasm'
-init({
-  wasm: require('yoga-layout-wasm/dist/yoga.wasm'),
-  asm: require('yoga-layout-wasm/dist/yoga.wasm.js'),
-}).then(yoga => {
-  // ...
-})
-```
-
-### Single `asm.js` module
-
-``` javascript
-// *.js
-import Yoga from 'yoga-layout-wasm/asm'
-
-Yoga.then(yoga => {
-  // ...
-})
+  typeof WebAssembly === 'undefined' ?
+    import('yoga-layout-wasm/asm')
+      .then(mod => mod.default)
+      .then(init) :
+    import('yoga-layout-wasm')
+      .then(mod => mod.default(require('yoga-layout-wasm/dist/yoga.wasm')))
+      .then(test);
 ```
 
 ## Examples
