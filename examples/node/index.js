@@ -1,5 +1,5 @@
 const path = require('path')
-const Yoga = require('../../dist/index')
+const Yoga = require('../../dist/index.js')
 
 function test (yoga) {
   const Node = yoga.Node
@@ -28,4 +28,6 @@ function test (yoga) {
   // {left: 250, top: 0, width: 100, height: 100}
 }
 
-Yoga(path.resolve(__dirname, '../../build/')).then(test)
+// Yoga(path.resolve(__dirname, '../../build/')).then(test)
+
+Yoga().then(test)

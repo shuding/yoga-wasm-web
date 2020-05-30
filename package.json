@@ -3,6 +3,9 @@
   "version": "1.9.3-alpha",
   "description": "yoga-layout webassembly module",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "index.d.ts",
+  "typings": "index.d.ts",
   "scripts": {
     "build": "rm -rf dist && rollup -c rollup.config.js",
     "build:all": "rm -rf dist build && make && rollup -c rollup.config.js",
@@ -26,7 +29,6 @@
   },
   "homepage": "https://github.com/pinqy520/yoga-layout-wasm#readme",
   "files": [
-    "build",
     "dist",
     "package.json",
     "index.d.ts",
@@ -38,7 +40,9 @@
     "@rollup/plugin-babel": "^5.0.2",
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-sucrase": "^3.0.0",
+    "http-server": "^0.12.3",
     "rollup": "^2.0.0",
+    "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-terser": "^6.1.0"
   },
   "dependencies": {
