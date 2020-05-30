@@ -23661,10 +23661,22 @@ var Yoga = (function () {
     return proto;
   }
 
-  var asm = Module().then(function (mod) {
-    return entryCommon(bind, mod);
-  });
+  function init() {
+    var task = Module().then(function (raw) {
+      return Object.assign(mod, entryCommon(bind, raw));
+    });
 
-  return asm;
+    mod.init = function () {
+      return task;
+    };
+
+    return task;
+  }
+
+  var mod = {
+    init: init
+  };
+
+  return mod;
 
 }());

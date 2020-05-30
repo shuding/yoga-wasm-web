@@ -3403,14 +3403,24 @@ var Yoga = (function () {
     } : void 0;
   }
 
-  function Yoga(filepath) {
-    return Module({
+  function init(filepath) {
+    var task = Module({
       locateFile: initConfig(filepath)
-    }).then(function (mod) {
-      return entryCommon(bind, mod);
+    }).then(function (raw) {
+      return Object.assign(mod, entryCommon(bind, raw));
     });
+
+    mod.init = function () {
+      return task;
+    };
+
+    return task;
   }
 
-  return Yoga;
+  var mod = {
+    init: init
+  };
+
+  return mod;
 
 }());

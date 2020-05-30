@@ -30,4 +30,4 @@ function test (yoga) {
 
 // Yoga(path.resolve(__dirname, '../../dist/yoga.wasm')).then(test)
 
-Yoga().then(test)
+Yoga.init().then(test)

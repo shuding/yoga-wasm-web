@@ -5,4 +5,14 @@ function bind(name, proto) {
   return proto;
 }
 
-export default emscripten().then(mod => entry(bind, mod));
+function init() {
+  const task = emscripten().then(raw => Object.assign(mod, entry(bind, raw)));
+  mod.init = () => task;
+  return task;
+}
+
+const mod = {
+  init,
+};
+
+export default mod;

@@ -6,13 +6,21 @@ function bind(name, proto) {
 }
 
 function initConfig(filepath) {
-  return filepath
-    ? function locateFile() {
-        return filepath
-      }
-    : void 0;
+  return filepath ?
+    function locateFile() {
+      return filepath;
+    } :
+    void 0;
 }
 
-export default function Yoga(filepath) {
-  return emscripten({ locateFile: initConfig(filepath) }).then(mod => entry(bind, mod));
+function init(filepath) {
+  const task = emscripten({ locateFile: initConfig(filepath) }).then(raw => Object.assign(mod, entry(bind, raw)));
+  mod.init = () => task;
+  return task;
 }
+
+const mod = {
+  init,
+};
+
+export default mod;

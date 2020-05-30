@@ -23660,8 +23660,20 @@ function bind(name, proto) {
   return proto;
 }
 
-var asm = Module().then(function (mod) {
-  return entryCommon(bind, mod);
-});
+function init() {
+  var task = Module().then(function (raw) {
+    return Object.assign(mod, entryCommon(bind, raw));
+  });
 
-module.exports = asm;
+  mod.init = function () {
+    return task;
+  };
+
+  return task;
+}
+
+var mod = {
+  init: init
+};
+
+module.exports = mod;

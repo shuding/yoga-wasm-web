@@ -19,8 +19,10 @@ export {
 
 export type YogaStatic = typeof Yoga
 
-const asmYoga: Promise<YogaStatic>
+export type YogaWasm = {
+  init(): Promise<YogaWasm>
+} & YogaStatic
 
-export = asmYoga
+const mod: YogaWasm
 
-export default asmYoga
+export default mod
