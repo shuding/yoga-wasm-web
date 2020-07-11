@@ -10,12 +10,12 @@ $ npm i yoga-layout-wasm --save
 ``` javascript
 import Yoga from 'yoga-layout-wasm'
 
-function test () {
-  const Node = Yoga.Node
+function test (yoga) {
+  const Node = yoga.Node
   const root = Node.create();
   root.setWidth(500);
   root.setHeight(300);
-  root.setJustifyContent(Yoga.JUSTIFY_CENTER);
+  root.setJustifyContent(yoga.JUSTIFY_CENTER);
   
   const node1 = Node.create();
   node1.setWidth(100);
@@ -57,18 +57,34 @@ Yoga.init().then(yoga => {
 
 ``` javascript
 // ... webpack.config.js
-  {
-    test: /\.(wasm)$/,
-    type: 'javascript/auto',
-    use: [
+module.exports =  {
+  // ... other config
+  module: {
+    // ... other module
+    rules: [
+      // ...other rules
       {
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[md5:hash:base64:6].[ext]',
-        },
-      },
+        test: /\.(wasm)$/,
+        type: 'javascript/auto',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[md5:hash:base64:6].[ext]',
+            },
+          },
+        ],
+      }
     ],
+  },
+  resolve: {
+    // ...
+    alias: { // required in browser
+      path: false,
+      fs: false
+    }
   }
+};
 // ...
 ```
 
