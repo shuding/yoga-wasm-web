@@ -1,1 +1,0 @@
-import a from"./entry.js";import i from"./yoga.mjs";function s(n,t){return t}async function u(n){let t=await i({instantiateWasm(r,o){let e=new WebAssembly.Instance(n,r);return o(e),e.exports},locateFile(){return""}});return a(s,t)}export{u as default};
