@@ -9,3 +9,4 @@
 - Add `pre.js` to set `document` as `this`.
 - Replace Rollup with esbuild for bundling.
 - Remove the asm.js build.
+- Enable LTO.
