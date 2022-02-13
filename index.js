@@ -8,9 +8,25 @@ function bind(_, proto) {
 export default async function (wasm) {
   const mod = await yoga({
     instantiateWasm(info, receive) {
-      const instance = new WebAssembly.Instance(wasm, info)
-      receive(instance)
-      return instance.exports
+      WebAssembly.instantiate(wasm, info).then(({ instance }) => {
+        receive(instance)
+      })
+      return {}
+    },
+    locateFile() {
+      return ''
+    },
+  })
+  return entry(bind, mod)
+}
+
+export async function initStreaming(response) {
+  const mod = await yoga({
+    instantiateWasm(info, receive) {
+      WebAssembly.instantiateStreaming(response, info).then(({ instance }) => {
+        receive(instance)
+      })
+      return {}
     },
     locateFile() {
       return ''
