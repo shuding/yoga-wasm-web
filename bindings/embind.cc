@@ -8,6 +8,14 @@
 
 using namespace emscripten;
 
+EMSCRIPTEN_BINDINGS(YGEnums) {
+  enum_<YGMeasureMode>("YGMeasureMode")
+    .value("undefined", YGMeasureModeUndefined)
+    .value("exactly", YGMeasureModeExactly)
+    .value("atMost", YGMeasureModeAtMost)
+  ;
+}
+
 EMSCRIPTEN_BINDINGS(Config) {
   class_<Config>("Config")
     .constructor<>(&Config::create, allow_raw_pointers())
@@ -15,7 +23,6 @@ EMSCRIPTEN_BINDINGS(Config) {
     .function("setExperimentalFeatureEnabled", &Config::setExperimentalFeatureEnabled)
     .function("setPointScaleFactor", &Config::setPointScaleFactor)
     .function("isExperimentalFeatureEnabled", &Config::isExperimentalFeatureEnabled)
-
   ;
 }
 

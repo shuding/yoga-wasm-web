@@ -8,7 +8,7 @@ function bind(_, proto) {
 export default async function (wasm) {
   const mod = await yoga({
     instantiateWasm(info, receive) {
-      WebAssembly.instantiate(wasm, info).then(({ instance }) => {
+      WebAssembly.instantiate(wasm, info).then((instance) => {
         receive(instance)
       })
       return {}
@@ -23,7 +23,7 @@ export default async function (wasm) {
 export async function initStreaming(response) {
   const mod = await yoga({
     instantiateWasm(info, receive) {
-      WebAssembly.instantiateStreaming(response, info).then(({ instance }) => {
+      WebAssembly.instantiateStreaming(response, info).then((instance) => {
         receive(instance)
       })
       return {}
