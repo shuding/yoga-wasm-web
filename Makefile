@@ -9,6 +9,7 @@ wasm:
 		-Iyoga \
 		-g0 \
 		-O2 \
+		-flto \
 		-s WASM=1 \
 		-s WASM_ASYNC_COMPILATION=1 \
 		-s EXTRA_EXPORTED_RUNTIME_METHODS=['cwrap','setValue'] \
