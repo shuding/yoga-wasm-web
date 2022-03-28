@@ -14,6 +14,13 @@ EMSCRIPTEN_BINDINGS(YGEnums) {
     .value("exactly", YGMeasureModeExactly)
     .value("atMost", YGMeasureModeAtMost)
   ;
+
+  enum_<YGUnit>("YGUnit")
+    .value("undefined", YGUnitUndefined)
+    .value("point", YGUnitPoint)
+    .value("percent", YGUnitPercent)
+    .value("auto", YGUnitAuto)
+  ;
 }
 
 EMSCRIPTEN_BINDINGS(Config) {
