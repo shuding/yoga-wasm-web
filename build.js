@@ -39,10 +39,7 @@ async function start() {
   const yoga = await fs.readFile('./dist/yoga.mjs', 'utf8')
   await fs.writeFile(
     './dist/yoga.mjs',
-    yoga.replace(
-      'wasmBinaryFile=new URL("yoga.wasm",import.meta.url).toString()',
-      ''
-    )
+    yoga.replace('new URL("yoga.wasm",import.meta.url)', '""')
   )
 }
 
