@@ -5,11 +5,11 @@ all: clean dir wasm
 wasm:
 	$(CC) yoga/yoga/*.cpp bindings/*.cc \
 		--bind -Os --memory-init-file 0 --llvm-lto 1 \
-		--pre-js './pre.js' \
 		-Iyoga \
 		-g0 \
 		-O2 \
 		-flto \
+		--closure 1 \
 		-s WASM=1 \
 		-s WASM_ASYNC_COMPILATION=1 \
 		-s EXTRA_EXPORTED_RUNTIME_METHODS=['cwrap','setValue'] \
