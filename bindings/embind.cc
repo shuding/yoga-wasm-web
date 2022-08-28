@@ -164,9 +164,6 @@ EMSCRIPTEN_BINDINGS(Node) {
     .function("getParent", &Node::getParent, allow_raw_pointers())
     .function("getChild", &Node::getChild, allow_raw_pointers())
 
-    .function("isReferenceBaseline", &Node::isReferenceBaseline)
-    .function("setIsReferenceBaseline", &Node::setIsReferenceBaseline)
-
     .function("setMeasureFunc", &Node::setMeasureFunc, allow_raw_pointers())
     .function("unsetMeasureFunc", &Node::unsetMeasureFunc)
 
