@@ -13,6 +13,7 @@
   "files": [
     "dist",
     "package.json",
+    "index.d.ts",
     "LICENSE"
   ],
   "devDependencies": {
