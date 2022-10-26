@@ -21,6 +21,12 @@ EMSCRIPTEN_BINDINGS(YGEnums) {
     .value("percent", YGUnitPercent)
     .value("auto", YGUnitAuto)
   ;
+
+  enum_<YGGutter>("YGGutter")
+    .value("column", YGGutterColumn)
+    .value("row", YGGutterRow)
+    .value("all", YGGutterAll)
+  ;
 }
 
 EMSCRIPTEN_BINDINGS(Config) {
@@ -121,6 +127,7 @@ EMSCRIPTEN_BINDINGS(Node) {
 
     .function("setPadding", &Node::setPadding)
     .function("setPaddingPercent", &Node::setPaddingPercent)
+    .function("setGap", &Node::setGap)
 
     .function("getPositionType", &Node::getPositionType)
     .function("getPosition", &Node::getPosition)
@@ -155,6 +162,7 @@ EMSCRIPTEN_BINDINGS(Node) {
     .function("getDisplay", &Node::getDisplay)
 
     .function("getPadding", &Node::getPadding)
+    .function("getGap", &Node::getGap)
 
     .function("insertChild", &Node::insertChild, allow_raw_pointers())
     .function("removeChild", &Node::removeChild, allow_raw_pointers())

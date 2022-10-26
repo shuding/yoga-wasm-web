@@ -8,7 +8,7 @@
  * @format
  */
 
-const CONSTANTS = require('../yoga/javascript/sources/YGEnums')
+import CONSTANTS from '../yoga/javascript/sources/YGEnums'
 import type {
   Yoga$Edge,
   Yoga$FlexWrap,
@@ -20,6 +20,7 @@ import type {
   Yoga$JustifyContent,
   Yoga$Display,
   Yoga$ExperimentalFeature,
+  Yoga$Gutter,
 } from '../yoga/javascript/sources/YGEnums'
 
 class Layout {
@@ -163,6 +164,7 @@ export type Yoga$Node = {
   getPosition(edge: Yoga$Edge): Value,
   getPositionType(): Yoga$PositionType,
   getWidth(): Value,
+  getGap(gutter: Yoga$Gutter): Value,
   insertChild(child: Yoga$Node, index: number): void,
   isDirty(): boolean,
   markDirty(): void,
@@ -200,6 +202,7 @@ export type Yoga$Node = {
   setOverflow(overflow: Yoga$Overflow): void,
   setPadding(edge: Yoga$Edge, padding: number | string): void,
   setPaddingPercent(edge: Yoga$Edge, padding: number): void,
+  setGap(gutter: Yoga$Gutter, gapLength: number): void,
   setPosition(edge: Yoga$Edge, position: number | string): void,
   setPositionPercent(edge: Yoga$Edge, position: number): void,
   setPositionType(positionType: Yoga$PositionType): void,
