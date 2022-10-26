@@ -15,7 +15,7 @@ async function start() {
     outfile: './dist/entry.js',
     external: ['*.wasm'],
     minify: true,
-    plugins: [flow(/\.js$/)],
+    plugins: [flow(/\.js$/, true)],
   })
 
   await build({
@@ -30,7 +30,7 @@ async function start() {
     outfile: './dist/index.js',
     external: ['*.wasm', './entry.js', './yoga.mjs'],
     minify: true,
-    plugins: [flow(/\.js$/)],
+    plugins: [flow(/\.js$/, true)],
   })
 
   // Here a trick to avoid initializing the URL for the wasm file. Doing this
