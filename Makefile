@@ -9,7 +9,6 @@ wasm:
 		-g0 \
 		-O2 \
 		-flto \
-		--closure 1 \
 		-msimd128 \
 		-s WASM=1 \
 		-s WASM_ASYNC_COMPILATION=1 \
