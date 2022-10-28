@@ -10,7 +10,6 @@ wasm:
 		-Os \
 		-flto \
 		--closure 1 \
-		-msimd128 \
 		-s WASM=1 \
 		-s WASM_ASYNC_COMPILATION=1 \
 		-s DISABLE_EXCEPTION_CATCHING=1 \
