@@ -1,5 +1,5 @@
-import entry from './entry.js'
-import yoga from './yoga.mjs'
+import entry from './entry/index.js'
+import yoga from './tmp/yoga.mjs'
 
 function bind(_, proto) {
   return proto

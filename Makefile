@@ -26,10 +26,10 @@ wasm:
 		-s MALLOC="emmalloc" \
 		-s INCOMING_MODULE_JS_API=['instantiateWasm','locateFile']\
 		-s EXPORT_NAME="yoga" \
-		-o dist/yoga.mjs
+		-o tmp/yoga.mjs
 
 clean:
-	rm -rf dist 
+	rm -rf tmp 
 
 dir:
-	mkdir -p dist
+	mkdir -p tmp
