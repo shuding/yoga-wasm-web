@@ -13,7 +13,6 @@ wasm:
 		-msimd128 \
 		-s WASM=1 \
 		-s WASM_ASYNC_COMPILATION=1 \
-		-s EXTRA_EXPORTED_RUNTIME_METHODS=['cwrap','setValue'] \
 		-s DISABLE_EXCEPTION_CATCHING=1 \
 		-s ASSERTIONS=0 \
 		-s ALLOW_MEMORY_GROWTH=1 \
