@@ -4,10 +4,10 @@ all: clean dir wasm
 
 wasm:
 	$(CC) yoga/yoga/*.cpp bindings/*.cc \
-		--bind -Os \
+		--bind \
 		-Iyoga \
 		-g0 \
-		-O2 \
+		-Os \
 		-flto \
 		--closure 1 \
 		-msimd128 \
