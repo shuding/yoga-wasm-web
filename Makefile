@@ -4,7 +4,7 @@ all: clean dir wasm
 
 wasm:
 	$(CC) yoga/yoga/*.cpp bindings/*.cc \
-		--bind -Os --memory-init-file 0 \
+		--bind -Os \
 		-Iyoga \
 		-g0 \
 		-O2 \
