@@ -25,7 +25,6 @@ wasm:
 		-s MALLOC="emmalloc" \
 		-s INCOMING_MODULE_JS_API=['instantiateWasm','locateFile']\
 		-s EXPORT_NAME="yoga" \
-		-s "DEFAULT_LIBRARY_FUNCS_TO_INCLUDE=['memcpy','memset','malloc','free','strlen']" \
 		-o dist/yoga.mjs
 
 clean:
