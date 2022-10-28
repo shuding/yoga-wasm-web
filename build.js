@@ -1,5 +1,4 @@
 import { build } from 'esbuild'
-import fs from 'node:fs/promises'
 import flow from 'esbuild-plugin-flow'
 
 async function start() {
@@ -32,15 +31,6 @@ async function start() {
     minify: true,
     plugins: [flow(/\.js$/)],
   })
-
-  // Here a trick to avoid initializing the URL for the wasm file. Doing this
-  // because I couldn't find a way to avoid it with emcc.
-  // Related issue: https://github.com/emscripten-core/emscripten/issues/12184
-  const yoga = await fs.readFile('./dist/yoga.mjs', 'utf8')
-  await fs.writeFile(
-    './dist/yoga.mjs',
-    yoga.replace('new URL("yoga.wasm",import.meta.url)', '""')
-  )
 }
 
 start()
