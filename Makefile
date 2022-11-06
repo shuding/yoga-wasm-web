@@ -4,19 +4,16 @@ all: clean dir wasm
 
 wasm:
 	$(CC) yoga/yoga/*.cpp bindings/*.cc \
-		--bind -Os --memory-init-file 0 --llvm-lto 1 \
+		--bind \
 		-Iyoga \
 		-g0 \
-		-O2 \
+		-Os \
 		-flto \
 		--closure 1 \
-		-msimd128 \
 		-s WASM=1 \
 		-s WASM_ASYNC_COMPILATION=1 \
-		-s EXTRA_EXPORTED_RUNTIME_METHODS=['cwrap','setValue'] \
-		-s DISABLE_EXCEPTION_CATCHING=1 \
-		-s AGGRESSIVE_VARIABLE_ELIMINATION=1 \
-		-s NO_EXIT_RUNTIME=1 \
+		-s USE_CLOSURE_COMPILER=1 \
+		-s USE_ES6_IMPORT_META=0 \
 		-s ASSERTIONS=0 \
 		-s ALLOW_MEMORY_GROWTH=1 \
 		-s MODULARIZE=1 \
@@ -28,11 +25,10 @@ wasm:
 		-s MALLOC="emmalloc" \
 		-s INCOMING_MODULE_JS_API=['instantiateWasm','locateFile']\
 		-s EXPORT_NAME="yoga" \
-		-s "DEFAULT_LIBRARY_FUNCS_TO_INCLUDE=['memcpy','memset','malloc','free','strlen']" \
-		-o dist/yoga.mjs
+		-o tmp/yoga.mjs
 
 clean:
-	rm -rf dist 
+	rm -rf tmp 
 
 dir:
-	mkdir -p dist
+	mkdir -p tmp
