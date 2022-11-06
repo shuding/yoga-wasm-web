@@ -212,6 +212,10 @@ void Node::setPaddingPercent(int edge, double padding) {
   YGNodeStyleSetPaddingPercent(m_node, static_cast<YGEdge>(edge), padding);
 }
 
+void Node::setGap(int gutter, double gapLength) {
+  YGNodeStyleSetGap(m_node, static_cast<YGGutter>(gutter), gapLength);
+}
+
 int Node::getPositionType(void) const {
   return YGNodeStyleGetPositionType(m_node);
 }
@@ -302,6 +306,10 @@ double Node::getBorder(int edge) const {
 
 YGValue Node::getPadding(int edge) const {
   return YGNodeStyleGetPadding(m_node, static_cast<YGEdge>(edge));
+}
+
+double Node::getGap(int gutter) {
+  return YGNodeStyleGetGap(m_node, static_cast<YGGutter>(gutter));
 }
 
 void Node::insertChild(Node* child, unsigned index) {

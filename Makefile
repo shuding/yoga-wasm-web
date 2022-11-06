@@ -9,7 +9,6 @@ wasm:
 		-g0 \
 		-Os \
 		-flto \
-		--closure 1 \
 		-s WASM=1 \
 		-s WASM_ASYNC_COMPILATION=1 \
 		-s USE_CLOSURE_COMPILER=1 \

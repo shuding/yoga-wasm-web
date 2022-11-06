@@ -14,7 +14,7 @@ async function start() {
     entryPoints: ['./index.js'],
     outfile: './dist/index.js',
     minify: true,
-    plugins: [flow(/\.js$/)],
+    plugins: [flow(/\.js$/, true)],
   })
 
   await copyFile('./tmp/yoga.wasm', './dist/yoga.wasm')
