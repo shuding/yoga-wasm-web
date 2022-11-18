@@ -39,7 +39,7 @@ describe("measureCallback", () => {
     });
   });
 
-  it("should have 4 args", async () => {
+  it.skip("should have 4 args", async () => {
     const callback = vi.fn(() => ({ width: 100, height: 100 }));
     const Node = Yoga.Node;
     const root = Node.create();
