@@ -11,7 +11,7 @@ jobs:
           submodules: true
       - uses: mymindstorm/setup-emsdk@v11
         with:
-          version: 3.1.24
+          version: 3.1.26
           actions-cache-folder: "emsdk-cache"
       - name: Use pnpm
         run: corepack enable pnpm && pnpm --version
