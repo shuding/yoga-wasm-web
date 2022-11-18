@@ -38,7 +38,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: "pnpm"
       - name: Download bundle
         uses: actions/download-artifact@v3
         with:
