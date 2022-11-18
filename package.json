@@ -6,7 +6,8 @@
   "typings": "index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "make && node build.js"
+    "build": "make && node build.js",
+    "test": "vitest"
   },
   "repository": "shuding/yoga-wasm-web",
   "license": "MIT",
@@ -18,6 +19,7 @@
   ],
   "devDependencies": {
     "esbuild": "^0.14.18",
-    "esbuild-plugin-flow": "^0.3.2"
+    "esbuild-plugin-flow": "^0.3.2",
+    "vitest": "^0.25.2"
   }
 }
