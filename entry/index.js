@@ -333,6 +333,14 @@ module.exports = (bind: any, lib: any): Yoga => {
     original.call(this, wrapMeasureFunction(measureFunc))
   })
 
+  function wrapDirtiedFunc(dirtiedFunction) {
+    return lib.DirtiedCallback.implement({ dirtied: dirtiedFunction })
+  }
+
+  patch(lib.Node.prototype, 'setDirtiedFunc', function (original, dirtiedFunc) {
+    original.call(this, wrapDirtiedFunc(dirtiedFunc))
+  })
+
   patch(
     lib.Node.prototype,
     'calculateLayout',
