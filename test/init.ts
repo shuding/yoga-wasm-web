@@ -1,8 +1,6 @@
 import { readFile } from "node:fs/promises";
-import Yoga from "..";
+import initWasm from "..";
 
-const lib = await Yoga(
+export const Yoga = await initWasm(
   await readFile(new URL("../dist/yoga.wasm", import.meta.url))
 );
-
-export default lib;

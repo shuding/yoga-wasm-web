@@ -1,7 +1,7 @@
 import { it, describe, expect } from "vitest";
-import Yoga from "./initYoga";
+import { Yoga } from "./init";
 
-describe("Basic", () => {
+describe("basic", () => {
   it("should calculate layout with two nodes", async () => {
     const Node = Yoga.Node;
     const root = Node.create();

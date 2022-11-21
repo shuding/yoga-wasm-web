@@ -1,75 +1,98 @@
 import { vi, it, describe, expect } from "vitest";
-import Yoga from "./initYoga";
+import { Yoga } from "./init";
 
 describe("measureCallback", () => {
-  it("should call measure callback when it is provided", async () => {
-    const Node = Yoga.Node;
-    const root = Node.create();
-    root.setWidth(500);
-    root.setHeight(500);
-    root.setJustifyContent(Yoga.JUSTIFY_CENTER);
+  it("should be called when it is provided", async () => {
+    const callback = vi.fn(() => ({ width: 100, height: 100 }));
 
-    const node1 = Node.create();
-    node1.setWidth(100);
-    node1.setHeight(100);
+    const root = Yoga.Node.create();
+    const node = Yoga.Node.create();
+    root.insertChild(node, root.getChildCount());
 
-    const node2 = Node.create();
-    node2.setMeasureFunc(() => ({ width: 100, height: 100 }));
+    node.setMeasureFunc(callback);
 
-    root.insertChild(node1, 0);
-    root.insertChild(node2, 1);
+    root.calculateLayout();
 
-    root.calculateLayout(500, 500);
+    expect(callback).toHaveBeenCalled();
     expect(root.getComputedLayout()).toContain({
-      top: 0,
-      width: 500,
-      height: 500,
-    });
-
-    expect(node1.getComputedLayout()).toContain({
-      top: 150,
       width: 100,
-      height: 100,
-    });
-
-    expect(node2.getComputedLayout()).toContain({
-      top: 250,
-      width: 500,
       height: 100,
     });
   });
 
-  it.skip("should have 4 args", async () => {
+  it("should have 4 args", async () => {
     const callback = vi.fn(() => ({ width: 100, height: 100 }));
-    const Node = Yoga.Node;
-    const root = Node.create();
-    root.setWidth(500);
-    root.setHeight(500);
 
-    const node1 = Node.create();
-    node1.setMeasureFunc(callback);
+    const root = Yoga.Node.create();
+    const node = Yoga.Node.create();
+    root.insertChild(node, root.getChildCount());
 
-    root.insertChild(node1, 0);
-    root.calculateLayout(500, 500);
+    node.setMeasureFunc(callback);
+
+    root.calculateLayout(100, 100);
 
     expect(root.getComputedLayout()).toContain({
-      top: 0,
-      width: 500,
-      height: 500,
-    });
-
-    expect(node1.getComputedLayout()).toContain({
-      top: 0,
-      width: 500,
+      width: 100,
       height: 100,
     });
 
     expect(callback).toHaveBeenCalled();
     expect(callback).toHaveBeenCalledWith(
-      500,
+      100,
       Yoga.MEASURE_MODE_EXACTLY,
-      500,
+      100,
       Yoga.MEASURE_MODE_AT_MOST
     );
+  });
+
+  it("should work when empty object is returned", async () => {
+    const callback = vi.fn(() => ({}));
+
+    const root = Yoga.Node.create();
+    const node = Yoga.Node.create();
+    root.insertChild(node, root.getChildCount());
+
+    node.setMeasureFunc(callback);
+
+    root.calculateLayout(10, 10);
+    expect(callback).toHaveBeenCalled();
+    expect(root.getComputedLayout()).toContain({
+      width: 10,
+      height: 10,
+    });
+  });
+
+  it("should work when only width is provided", async () => {
+    const callback = vi.fn(() => ({ width: 10 }));
+
+    const root = Yoga.Node.create();
+    const node = Yoga.Node.create();
+    root.insertChild(node, root.getChildCount());
+
+    node.setMeasureFunc(callback);
+
+    root.calculateLayout(10, 10);
+    expect(callback).toHaveBeenCalled();
+    expect(root.getComputedLayout()).toContain({
+      width: 10,
+      height: 10,
+    });
+  });
+
+  it("should work when only height is provided", async () => {
+    const callback = vi.fn(() => ({ height: 10 }));
+
+    const root = Yoga.Node.create();
+    const node = Yoga.Node.create();
+    root.insertChild(node, root.getChildCount());
+
+    node.setMeasureFunc(callback);
+
+    root.calculateLayout(10, 10);
+    expect(callback).toHaveBeenCalled();
+    expect(root.getComputedLayout()).toContain({
+      width: 10,
+      height: 10,
+    });
   });
 });
