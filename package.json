@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "make && node build.js",
+    "gentests": "node ./test/gentest/run.js",
     "test": "vitest"
   },
   "repository": "shuding/yoga-wasm-web",
@@ -18,8 +19,10 @@
     "LICENSE"
   ],
   "devDependencies": {
+    "@types/jscodeshift": "^0.11.5",
     "esbuild": "^0.14.18",
     "esbuild-plugin-flow": "^0.3.2",
+    "jscodeshift": "^0.14.0",
     "vitest": "^0.25.2"
   }
 }
