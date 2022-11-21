@@ -13,6 +13,7 @@ EMSCRIPTEN_BINDINGS(Config) {
   class_<Config>("Config")
     .constructor<>(&Config::create, allow_raw_pointers())
     .class_function<>("create", &Config::create, allow_raw_pointers())
+    .class_function<>("destroy", &Config::destroy, allow_raw_pointers())
     .function("setExperimentalFeatureEnabled", &Config::setExperimentalFeatureEnabled)
     .function("setPointScaleFactor", &Config::setPointScaleFactor)
     .function("isExperimentalFeatureEnabled", &Config::isExperimentalFeatureEnabled)
