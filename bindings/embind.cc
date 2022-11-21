@@ -1,33 +1,13 @@
 #include "./Config.hh"
 #include "./Layout.hh"
 #include "./Node.hh"
+#include "./Value.hh"
 
 #include <yoga/Yoga.h>
 
 #include <emscripten/bind.h>
 
 using namespace emscripten;
-
-EMSCRIPTEN_BINDINGS(YGEnums) {
-  enum_<YGMeasureMode>("YGMeasureMode")
-    .value("undefined", YGMeasureModeUndefined)
-    .value("exactly", YGMeasureModeExactly)
-    .value("atMost", YGMeasureModeAtMost)
-  ;
-
-  enum_<YGUnit>("YGUnit")
-    .value("undefined", YGUnitUndefined)
-    .value("point", YGUnitPoint)
-    .value("percent", YGUnitPercent)
-    .value("auto", YGUnitAuto)
-  ;
-
-  enum_<YGGutter>("YGGutter")
-    .value("column", YGGutterColumn)
-    .value("row", YGGutterRow)
-    .value("all", YGGutterAll)
-  ;
-}
 
 EMSCRIPTEN_BINDINGS(Config) {
   class_<Config>("Config")
@@ -65,9 +45,9 @@ EMSCRIPTEN_BINDINGS(Node) {
     .field("height", &YGSize::height)
     ;
 
-  value_object<YGValue>("Value")
-    .field("value", &YGValue::value)
-    .field("unit", &YGValue::unit)
+  value_object<Value>("Value")
+    .field("value", &Value::value)
+    .field("unit", &Value::unit)
     ;
 
   class_<Node>("Node")
