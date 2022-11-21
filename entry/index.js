@@ -320,7 +320,13 @@ module.exports = (bind: any, lib: any): Yoga => {
 
   // https://github.com/vincentriemer/yoga-dom/blob/b1592710c64c85f610f9d963cd54c99bbf01ae03/src/index.js
   function wrapMeasureFunction(measureFunction) {
-    return lib.MeasureCallback.implement({ measure: measureFunction })
+    return lib.MeasureCallback.implement({ measure: (...args) => {
+      const { width, height } = measureFunction(...args)
+      return {
+        width: width ?? 0,
+        height: height ?? 0,
+      }
+    }})
   }
 
   patch(lib.Node.prototype, 'setMeasureFunc', function (original, measureFunc) {
