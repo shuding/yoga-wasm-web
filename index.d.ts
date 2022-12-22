@@ -19,10 +19,5 @@ export {
 
 export type YogaStatic = typeof Yoga
 
-export type YogaWasm = {
-  init(filepath?: string): Promise<YogaWasm>
-} & YogaStatic
-
-const mod: YogaWasm
-
-export default mod
+export default function(wasm: ArrayBuffer): YogaStatic;
+export function initStreaming(response: Response): Promise<YogaStatic>;
