@@ -8,19 +8,20 @@
 
 #include "./Layout.hh"
 #include "./Config.hh"
+#include "./Value.hh"
 
 struct MeasureCallback
 {
   virtual YGSize measure(float width,
-      YGMeasureMode widthMode,
+      int widthMode,
       float height,
-      YGMeasureMode heightMode) = 0;
+      int heightMode) = 0;
 };
 
 struct MeasureCallbackWrapper : public emscripten::wrapper<MeasureCallback>
 {
   EMSCRIPTEN_WRAPPER(MeasureCallbackWrapper);
-  YGSize measure(float width, YGMeasureMode widthMode, float height, YGMeasureMode heightMode)
+  YGSize measure(float width, int widthMode, float height, int heightMode)
   {
     return call<YGSize>("measure", width, widthMode, height, heightMode);
   }
@@ -121,7 +122,7 @@ public: // Style setters
 
 public: // Style getters
   int getPositionType(void) const;
-  YGValue getPosition(int edge) const;
+  Value getPosition(int edge) const;
 
   int getAlignContent(void) const;
   int getAlignItems(void) const;
@@ -130,29 +131,29 @@ public: // Style getters
   int getFlexWrap(void) const;
   int getJustifyContent(void) const;
 
-  YGValue getMargin(int edge) const;
+  Value getMargin(int edge) const;
 
   int getOverflow(void) const;
   int getDisplay(void) const;
 
-  YGValue getFlexBasis(void) const;
+  Value getFlexBasis(void) const;
   double getFlexGrow(void) const;
   double getFlexShrink(void) const;
 
-  YGValue getWidth(void) const;
-  YGValue getHeight(void) const;
+  Value getWidth(void) const;
+  Value getHeight(void) const;
 
-  YGValue getMinWidth(void) const;
-  YGValue getMinHeight(void) const;
+  Value getMinWidth(void) const;
+  Value getMinHeight(void) const;
 
-  YGValue getMaxWidth(void) const;
-  YGValue getMaxHeight(void) const;
+  Value getMaxWidth(void) const;
+  Value getMaxHeight(void) const;
 
   double getAspectRatio(void) const;
 
   double getBorder(int edge) const;
 
-  YGValue getPadding(int edge) const;
+  Value getPadding(int edge) const;
   
   double getGap(int gutter);
 

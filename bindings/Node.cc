@@ -5,6 +5,7 @@
 #include "./Node.hh"
 #include "./Layout.hh"
 #include "./Config.hh"
+#include "./Value.hh"
 
 static YGSize globalMeasureFunc(
     YGNodeRef nodeRef,
@@ -220,8 +221,9 @@ int Node::getPositionType(void) const {
   return YGNodeStyleGetPositionType(m_node);
 }
 
-YGValue Node::getPosition(int edge) const {
-  return YGNodeStyleGetPosition(m_node, static_cast<YGEdge>(edge));
+Value Node::getPosition(int edge) const {
+  return Value::fromYGValue(
+    YGNodeStyleGetPosition(m_node, static_cast<YGEdge>(edge)));
 }
 
 int Node::getAlignContent(void) const {
@@ -248,8 +250,9 @@ int Node::getJustifyContent(void) const {
   return YGNodeStyleGetJustifyContent(m_node);
 }
 
-YGValue Node::getMargin(int edge) const {
-  return YGNodeStyleGetMargin(m_node, static_cast<YGEdge>(edge));
+Value Node::getMargin(int edge) const {
+  return Value::fromYGValue(
+    YGNodeStyleGetMargin(m_node, static_cast<YGEdge>(edge)));
 }
 
 int Node::getOverflow(void) const {
@@ -260,8 +263,8 @@ int Node::getDisplay(void) const {
   return YGNodeStyleGetDisplay(m_node);
 }
 
-YGValue Node::getFlexBasis(void) const {
-  return YGNodeStyleGetFlexBasis(m_node);
+Value Node::getFlexBasis(void) const {
+  return Value::fromYGValue(YGNodeStyleGetFlexBasis(m_node));
 }
 
 double Node::getFlexGrow(void) const {
@@ -272,28 +275,28 @@ double Node::getFlexShrink(void) const {
   return YGNodeStyleGetFlexShrink(m_node);
 }
 
-YGValue Node::getWidth(void) const {
-  return YGNodeStyleGetWidth(m_node);
+Value Node::getWidth(void) const {
+  return Value::fromYGValue(YGNodeStyleGetWidth(m_node));
 }
 
-YGValue Node::getHeight(void) const {
-  return YGNodeStyleGetHeight(m_node);
+Value Node::getHeight(void) const {
+  return Value::fromYGValue(YGNodeStyleGetHeight(m_node));
 }
 
-YGValue Node::getMinWidth(void) const {
-  return YGNodeStyleGetMinWidth(m_node);
+Value Node::getMinWidth(void) const {
+  return Value::fromYGValue(YGNodeStyleGetMinWidth(m_node));
 }
 
-YGValue Node::getMinHeight(void) const {
-  return YGNodeStyleGetMinHeight(m_node);
+Value Node::getMinHeight(void) const {
+  return Value::fromYGValue(YGNodeStyleGetMinHeight(m_node));
 }
 
-YGValue Node::getMaxWidth(void) const {
-  return YGNodeStyleGetMaxWidth(m_node);
+Value Node::getMaxWidth(void) const {
+  return Value::fromYGValue(YGNodeStyleGetMaxWidth(m_node));
 }
 
-YGValue Node::getMaxHeight(void) const {
-  return YGNodeStyleGetMaxHeight(m_node);
+Value Node::getMaxHeight(void) const {
+  return Value::fromYGValue(YGNodeStyleGetMaxHeight(m_node));
 }
 
 double Node::getAspectRatio(void) const {
@@ -304,8 +307,8 @@ double Node::getBorder(int edge) const {
   return YGNodeStyleGetBorder(m_node, static_cast<YGEdge>(edge));
 }
 
-YGValue Node::getPadding(int edge) const {
-  return YGNodeStyleGetPadding(m_node, static_cast<YGEdge>(edge));
+Value Node::getPadding(int edge) const {
+  return Value::fromYGValue(YGNodeStyleGetPadding(m_node, static_cast<YGEdge>(edge)));
 }
 
 double Node::getGap(int gutter) {

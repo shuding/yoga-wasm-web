@@ -1,0 +1,54 @@
+name: "CI"
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Compile C++ to wasm
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - uses: mymindstorm/setup-emsdk@v11
+        with:
+          version: 3.1.26
+          actions-cache-folder: "emsdk-cache"
+      - name: Use pnpm
+        run: corepack enable pnpm && pnpm --version
+      - name: Install
+        run: pnpm install
+      - name: Build
+        run: pnpm build
+      - name: Upload bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: bundle
+          path: dist
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14, 16, 18]
+    name: Test node v${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use pnpm
+        run: corepack enable pnpm && pnpm --version
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Download bundle
+        uses: actions/download-artifact@v3
+        with:
+          name: bundle
+          path: dist
+      - name: Install
+        run: npm install
+      - name: Test
+        run: npm test
