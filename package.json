@@ -1,10 +1,14 @@
 {
   "name": "yoga-wasm-web",
   "version": "0.2.0",
-  "main": "dist/index.js",
   "types": "index.d.ts",
   "typings": "index.d.ts",
   "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js",
+    "./asm": "./dist/asm.js"
+  },
   "scripts": {
     "build": "make && node build.js",
     "test": "vitest"

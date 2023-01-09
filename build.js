@@ -3,6 +3,20 @@ import { build } from 'esbuild'
 import flow from 'esbuild-plugin-flow'
 
 async function start() {
+  const asm = build({
+    bundle: true,
+    sourcemap: false,
+    format: 'esm',
+    target: 'esnext',
+    loader: {
+      '.js': 'ts',
+    },
+    entryPoints: ['./asm.js'],
+    outfile: './dist/asm.js',
+    minify: true,
+    plugins: [flow(/\.js$/, true)],
+  })
+
   await build({
     bundle: true,
     sourcemap: false,
@@ -18,6 +32,7 @@ async function start() {
   })
 
   await copyFile('./tmp/yoga.wasm', './dist/yoga.wasm')
+  await asm
 }
 
 start()
