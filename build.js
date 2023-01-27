@@ -28,7 +28,10 @@ async function start() {
     minify: true,
   });
 
+  // copy wasm file
   await copyFile("./tmp/yoga.wasm", "./dist/yoga.wasm");
+
+  // copy d.ts files
   await copyFile(
     "./yoga/javascript/src_js/wrapAsm.d.ts",
     "./dist/wrapAsm.d.ts"
