@@ -19,6 +19,7 @@
     "dist",
     "package.json",
     "index.d.ts",
+    "asm.d.ts",
     "LICENSE"
   ],
   "devDependencies": {

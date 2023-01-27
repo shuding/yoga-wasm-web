@@ -1,23 +1,7 @@
-import Yoga from "yoga-layout";
+import type { Yoga } from "./dist/wrapAsm";
 
-export {
-  YogaNode,
-  YogaConfig,
-  YogaAlign,
-  YogaDirection,
-  YogaDisplay,
-  YogaEdge,
-  YogaFlexDirection,
-  YogaExperimentalFeature,
-  YogaFlexWrap,
-  YogaJustifyContent,
-  YogaOverflow,
-  YogaPositionType,
-  YogaUnit,
-  YogaMeasureMode,
-} from "yoga-layout"
+export * from "./dist/generated/YGEnums";
+export * from "./dist/wrapAsm";
 
-export type YogaStatic = typeof Yoga
-
-export default function(wasm: ArrayBuffer): YogaStatic;
-export function initStreaming(response: Response): Promise<YogaStatic>;
+export default function (wasm: ArrayBuffer): Promise<Yoga>;
+export function initStreaming(response: Response): Promise<Yoga>;
