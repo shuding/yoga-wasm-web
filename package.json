@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "make && node build.js",
-    "test": "vitest"
+    "test": "vitest run --dir ./test"
   },
   "repository": "shuding/yoga-wasm-web",
   "license": "MIT",
@@ -22,8 +22,7 @@
     "LICENSE"
   ],
   "devDependencies": {
-    "esbuild": "^0.14.18",
-    "esbuild-plugin-flow": "^0.3.2",
-    "vitest": "^0.25.2"
+    "esbuild": "^0.17.4",
+    "vitest": "^0.28.2"
   }
 }

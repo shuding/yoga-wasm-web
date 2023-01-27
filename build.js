@@ -1,6 +1,5 @@
 import { copyFile } from 'node:fs/promises'
 import { build } from 'esbuild'
-import flow from 'esbuild-plugin-flow'
 
 async function start() {
   const asm = build({
@@ -14,7 +13,6 @@ async function start() {
     entryPoints: ['./asm.js'],
     outfile: './dist/asm.js',
     minify: true,
-    plugins: [flow(/\.js$/, true)],
   })
 
   await build({
@@ -28,7 +26,6 @@ async function start() {
     entryPoints: ['./index.js'],
     outfile: './dist/index.js',
     minify: true,
-    plugins: [flow(/\.js$/, true)],
   })
 
   await copyFile('./tmp/yoga.wasm', './dist/yoga.wasm')
