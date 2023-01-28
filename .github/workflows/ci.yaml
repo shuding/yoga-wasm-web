@@ -14,9 +14,9 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
-      - uses: mymindstorm/setup-emsdk@v11
+      - uses: mymindstorm/setup-emsdk@v12
         with:
-          version: 3.1.26
+          version: 3.1.31
           actions-cache-folder: "emsdk-cache"
       - name: Use pnpm
         run: corepack enable pnpm && pnpm --version
