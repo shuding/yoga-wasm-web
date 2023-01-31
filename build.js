@@ -41,6 +41,7 @@ async function start() {
     "./yoga/javascript/src_js/generated/YGEnums.d.ts",
     "./dist/generated/YGEnums.d.ts"
   );
+  await copyFile("./asm.d.ts", "./dist/asm.d.ts");
   await asm;
 }
 
