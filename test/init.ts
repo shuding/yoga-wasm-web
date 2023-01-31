@@ -1,6 +1,11 @@
 import { readFile } from "node:fs/promises";
-import initWasm from "..";
+import process from "node:process";
 
-export const Yoga = await initWasm(
-  await readFile(new URL("../dist/yoga.wasm", import.meta.url))
-);
+import initWasm from "..";
+import initAsm from "../asm";
+
+export const Yoga = process.env.ASM
+  ? initAsm()
+  : await initWasm(
+      await readFile(new URL("../dist/yoga.wasm", import.meta.url))
+    );

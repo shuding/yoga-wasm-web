@@ -11,7 +11,9 @@
   },
   "scripts": {
     "build": "make && node build.js",
-    "test": "vitest run --dir ./test"
+    "test": "pnpm test:asm && pnpm test:wasm",
+    "test:asm": "ASM=true vitest run --dir ./test",
+    "test:wasm": "vitest run --dir ./test"
   },
   "repository": "shuding/yoga-wasm-web",
   "license": "MIT",
