@@ -6,6 +6,7 @@
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
+    "./dist/yoga.wasm": "./dist/yoga.wasm",
     ".": "./dist/index.js",
     "./asm": "./dist/asm.js"
   },
