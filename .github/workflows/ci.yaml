@@ -49,6 +49,6 @@ jobs:
           name: bundle
           path: dist
       - name: Install
-        run: npm install
+        run: pnpm install
       - name: Test
-        run: npm test
+        run: pnpm test

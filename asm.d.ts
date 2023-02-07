@@ -1,6 +1,6 @@
-import type { Yoga } from "./dist/wrapAsm";
+import type { Yoga } from "./wrapAsm";
 
-export * from "./dist/generated/YGEnums";
-export * from "./dist/wrapAsm";
+export * from "./generated/YGEnums";
+export * from "./wrapAsm";
 
 export default function (): Yoga;

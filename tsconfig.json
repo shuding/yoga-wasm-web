@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "ES2022",
+    "target": "ES2022",
+    "strict": true
+  },
+  "include": ["./test/*"]
+}

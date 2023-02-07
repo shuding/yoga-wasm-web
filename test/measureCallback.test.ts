@@ -52,6 +52,7 @@ describe("measureCallback", () => {
     const node = Yoga.Node.create();
     root.insertChild(node, root.getChildCount());
 
+    // @ts-expect-error
     node.setMeasureFunc(callback);
 
     root.calculateLayout(10, 10);
@@ -69,6 +70,7 @@ describe("measureCallback", () => {
     const node = Yoga.Node.create();
     root.insertChild(node, root.getChildCount());
 
+    // @ts-expect-error
     node.setMeasureFunc(callback);
 
     root.calculateLayout(10, 10);
@@ -86,6 +88,7 @@ describe("measureCallback", () => {
     const node = Yoga.Node.create();
     root.insertChild(node, root.getChildCount());
 
+    // @ts-expect-error
     node.setMeasureFunc(callback);
 
     root.calculateLayout(10, 10);
