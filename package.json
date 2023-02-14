@@ -1,8 +1,8 @@
 {
   "name": "yoga-wasm-web",
-  "version": "0.3.1",
-  "types": "index.d.ts",
-  "typings": "index.d.ts",
+  "version": "0.3.2",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -21,7 +21,6 @@
   "files": [
     "dist",
     "package.json",
-    "index.d.ts",
     "LICENSE"
   ],
   "devDependencies": {
