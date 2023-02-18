@@ -1,4 +1,5 @@
 import { it, describe, expect } from "vitest";
+import { EDGE_END, DISPLAY_NONE, GUTTER_ALL } from "../dist/asm";
 import { Yoga } from "./init";
 
 describe("defaults", () => {
@@ -77,5 +78,12 @@ describe("defaults", () => {
 
     expect(root.getComputedWidth()).toBeFalsy();
     expect(root.getComputedHeight()).toBeFalsy();
+  });
+
+  it("CONSTANTS is exported from root entry", () => {
+    
+    expect(EDGE_END).toBeDefined();
+    expect(DISPLAY_NONE).toBeDefined();
+    expect(GUTTER_ALL).toBeDefined();
   });
 });
