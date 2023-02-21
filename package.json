@@ -11,7 +11,7 @@
     "./asm": "./dist/asm.js"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "make && rollup -c",
     "test": "pnpm test:asm && pnpm test:wasm",
     "test:asm": "ASM=true vitest run --dir ./test",
     "test:wasm": "vitest run --dir ./test"
