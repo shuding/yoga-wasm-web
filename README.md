@@ -1,20 +1,50 @@
 # yoga-wasm-web
 
-[Yoga](https://github.com/facebook/yoga) but in WebAssembly and ASM.js. This is an **opinionated** fork from [pinqy520/yoga-layout-wasm](https://github.com/pinqy520/yoga-layout-wasm) with the following changes:
+[Yoga](https://github.com/facebook/yoga) but in WebAssembly and ASM.js. 
 
-- Stick to commit eea87c3 of Yoga, which supports `gap`.
-- Fix missing `YGMeasureMode` binding.
-- Fix missing `YGUnit` binding.
-- Set flag `DYNAMIC_EXECUTION=0` for `emcc` to remove `eval` and `Function` executions.
-- Set flag `TEXTDECODER=0`.
-- Force the `ENVIRONMENT` to be `web`.
-- Add `pre.js` to set `document` as `this`.
-- Replace Rollup with esbuild for bundling.
-- Remove the asm.js build.
-- Enable LTO.
-- Enable SIMD128.
+## Usage
 
-## Install & Build
+Install with your package manager:
+
+```sh
+pnpm i yoga-wasm-web
+npm i yoga-wasm-web
+yarn add yoga-wasm-web
+```
+
+### ASM.js
+
+To use the ASM.js build:
+
+```js
+import initYoga, { ALIGN_CENTER } from 'yoga-wasm-web/asm'
+
+const Yoga = initYoga()
+const node = Yoga.Node.create()
+node.setAlignContent(ALIGN_CENTER)
+```
+
+### WASM
+
+To use the WASM build (take Node.js as an example):
+
+```js
+import fs from 'fs'
+import initYoga, { ALIGN_CENTER } from 'yoga-wasm-web'
+
+const Yoga = await initYoga(
+  fs.readFileSync('./node_modules/yoga-wasm-web/dist/yoga.wasm')
+)
+
+const Yoga = initYoga()
+const node = Yoga.Node.create()
+node.setAlignContent(ALIGN_CENTER)
+```
+
+You can use other ways to provide the WASM binary too.
+
+
+## Contribution
 
 To develop this project locally, you need to clone the repo and fetch the yoga submodule first. Also, [emcc](https://emscripten.org/docs/getting_started/downloads.html) is required to build this project too.
 
@@ -30,27 +60,12 @@ And run the build script:
 pnpm build
 ```
 
-## WASM
+And run the tests:
 
-To use the WASM build (take Node.js as an example):
-
-```js
-import fs from 'fs'
-import initYoga from 'yoga-wasm-web'
-
-const yoga = await initYoga(
-  fs.readFileSync('./node_modules/yoga-wasm-web/dist/yoga.wasm')
-)
+```sh
+pnpm test
 ```
 
-You can use other ways to provide the WASM binary too.
+# Acknowledgements
 
-## ASM.js
-
-To use the ASM.js build:
-
-```js
-import initYoga from 'yoga-wasm-web/asm'
-
-const yoga = initYoga()
-```
+This project was started as **opinionated** fork from [pinqy520/yoga-layout-wasm](https://github.com/pinqy520/yoga-layout-wasm)
