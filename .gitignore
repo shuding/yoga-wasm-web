@@ -6,5 +6,7 @@ yarn.lock
 .vscode
 
 build
-dist
 tmp
+dist/*
+!dist/index.d.ts
+!dist/asm.d.ts
