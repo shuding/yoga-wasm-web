@@ -83,7 +83,7 @@ describe("defaults", () => {
   it("CONSTANTS is exported from root entry", async () => {
     const { EDGE_END, DISPLAY_NONE, GUTTER_ALL } = process.env.ASM
       ? await import("../dist/asm")
-      : await import("..");
+      : await import("../dist");
 
     expect(EDGE_END).toBeDefined();
     expect(DISPLAY_NONE).toBeDefined();
