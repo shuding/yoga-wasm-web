@@ -11,7 +11,7 @@
     "./asm": "./dist/asm.js"
   },
   "scripts": {
-    "build": "make && node build.js",
+    "build": "make && rollup -c",
     "test": "pnpm test:asm && pnpm test:wasm",
     "test:asm": "ASM=true vitest run --dir ./test",
     "test:wasm": "vitest run --dir ./test"
@@ -25,7 +25,11 @@
     "LICENSE"
   ],
   "devDependencies": {
-    "esbuild": "^0.17.4",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "rollup": "^3.17.0",
     "vitest": "^0.28.2"
   }
 }
+
