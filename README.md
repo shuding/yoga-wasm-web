@@ -36,7 +36,6 @@ const Yoga = await initYoga(
   fs.readFileSync('./node_modules/yoga-wasm-web/dist/yoga.wasm')
 )
 
-const Yoga = initYoga()
 const node = Yoga.Node.create()
 node.setAlignContent(ALIGN_CENTER)
 ```
