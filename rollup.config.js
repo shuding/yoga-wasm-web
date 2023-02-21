@@ -27,8 +27,7 @@ export default [
       commonjs({
         esmExternals: true,
       }),
+      terser({ compress: { passes: 2 } })
     ],
   },
 ];
-
-// terser({ compress: { passes: 2 } })
