@@ -1,5 +1,5 @@
 import { it, describe, expect } from "vitest";
-import { EDGE_END, DISPLAY_NONE, GUTTER_ALL } from "../dist/asm";
+import process from "node:process";
 import { Yoga } from "./init";
 
 describe("defaults", () => {
@@ -80,8 +80,11 @@ describe("defaults", () => {
     expect(root.getComputedHeight()).toBeFalsy();
   });
 
-  it("CONSTANTS is exported from root entry", () => {
-    
+  it("CONSTANTS is exported from root entry", async () => {
+    const { EDGE_END, DISPLAY_NONE, GUTTER_ALL } = process.env.ASM
+      ? await import("../dist/asm")
+      : await import("..");
+
     expect(EDGE_END).toBeDefined();
     expect(DISPLAY_NONE).toBeDefined();
     expect(GUTTER_ALL).toBeDefined();
