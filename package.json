@@ -1,8 +1,15 @@
 {
   "name": "yoga-wasm-web",
   "version": "0.3.1",
-  "types": "dist/index.d.ts",
   "type": "module",
+  "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "asm": [
+        "dist/asm.d.ts"
+      ]
+    }
+  },
   "exports": {
     "./package.json": "./package.json",
     "./dist/yoga.wasm": "./dist/yoga.wasm",
