@@ -1,5 +1,5 @@
 import { vi, it, describe, expect } from "vitest";
-import { Yoga } from "./init";
+import { Yoga } from "./init.js";
 
 describe("measureCallback", () => {
   it("should be called when it is provided", async () => {
