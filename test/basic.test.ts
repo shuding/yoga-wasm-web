@@ -1,5 +1,5 @@
 import { it, describe, expect } from "vitest";
-import { Yoga } from "./init";
+import { Yoga } from "./init.js";
 
 describe("basic", () => {
   it("should calculate layout with two nodes", async () => {
