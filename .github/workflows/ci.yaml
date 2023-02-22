@@ -50,5 +50,7 @@ jobs:
           path: dist
       - name: Install
         run: pnpm install
+      - name: Type check
+        run: pnpm typecheck
       - name: Test
         run: pnpm test
