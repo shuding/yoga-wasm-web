@@ -1,6 +1,6 @@
 import { it, describe, expect } from "vitest";
 import process from "node:process";
-import { Yoga } from "./init";
+import { Yoga } from "./init.js";
 
 describe("defaults", () => {
   it("assert Node default values", () => {
@@ -82,8 +82,8 @@ describe("defaults", () => {
 
   it("CONSTANTS is exported from root entry", async () => {
     const { EDGE_END, DISPLAY_NONE, GUTTER_ALL } = process.env.ASM
-      ? await import("../dist/asm")
-      : await import("../dist");
+      ? await import("../dist/asm.js")
+      : await import("../dist/index.js");
 
     expect(EDGE_END).toBeDefined();
     expect(DISPLAY_NONE).toBeDefined();

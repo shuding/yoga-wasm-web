@@ -1,4 +1,4 @@
-import { copyFile, mkdir } from "node:fs/promises";
+import { copyFile, readFile, writeFile, mkdir } from "node:fs/promises";
 import terser from "@rollup/plugin-terser";
 import commonjs from "@rollup/plugin-commonjs";
 import nodeResolve from "@rollup/plugin-node-resolve";
@@ -8,7 +8,10 @@ await mkdir("./dist/generated/", { recursive: true });
 await copyFile("./tmp/yoga.wasm", "./dist/yoga.wasm");
 
 // copy d.ts files
-await copyFile("./yoga/javascript/src_js/wrapAsm.d.ts", "./dist/wrapAsm.d.ts");
+let wrapAsm = await readFile("./yoga/javascript/src_js/wrapAsm.d.ts");
+wrapAsm = wrapAsm.toString().replace(/\.\/generated\/YGEnums/g, './generated/YGEnums.js')
+await writeFile("./dist/wrapAsm.d.ts", wrapAsm)
+
 await copyFile(
   "./yoga/javascript/src_js/generated/YGEnums.d.ts",
   "./dist/generated/YGEnums.d.ts"
@@ -26,7 +29,7 @@ export default [
       commonjs({
         esmExternals: true,
       }),
-      terser({ compress: { passes: 2 } })
+      terser({ compress: { passes: 2 } }),
     ],
   },
 ];
