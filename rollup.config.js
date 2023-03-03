@@ -1,5 +1,5 @@
 import { copyFile, readFile, writeFile, mkdir } from "node:fs/promises";
-import terser from "@rollup/plugin-terser";
+import { minify, defineRollupSwcMinifyOption } from "rollup-plugin-swc3";
 import commonjs from "@rollup/plugin-commonjs";
 import nodeResolve from "@rollup/plugin-node-resolve";
 
@@ -29,7 +29,9 @@ export default [
       commonjs({
         esmExternals: true,
       }),
-      terser({ compress: { passes: 2 } }),
+      minify(defineRollupSwcMinifyOption({
+        compress: { passes: 2 }
+      }))
     ],
   },
 ];
