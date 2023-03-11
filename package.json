@@ -7,6 +7,9 @@
     "*": {
       "asm": [
         "dist/asm.d.ts"
+      ],
+      "auto": [
+        "dist/auto.d.ts"
       ]
     }
   },
@@ -20,6 +23,11 @@
     "./asm": {
       "types": "./dist/asm.d.ts",
       "default": "./dist/asm.js"
+    },
+    "./auto": {
+      "types": "./dist/auto.d.ts",
+      "browser": "./dist/browser.js",
+      "default": "./dist/node.js"
     }
   },
   "scripts": {
