@@ -6,8 +6,12 @@ export * from "./yoga/javascript/src_js/generated/YGEnums.js";
 export default async function (wasm) {
   const mod = await yoga({
     instantiateWasm(info, receive) {
-      WebAssembly.instantiate(wasm, info).then(({ instance }) => {
-        receive(instance);
+      WebAssembly.instantiate(wasm, info).then((instance) => {
+        if (instance instanceof WebAssembly.Instance) {
+          receive(instance);
+        } else {
+          receive(instance.instance);
+        }
       });
     },
   });
