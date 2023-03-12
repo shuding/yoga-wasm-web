@@ -9,8 +9,10 @@ await copyFile("./tmp/yoga.wasm", "./dist/yoga.wasm");
 
 // copy d.ts files
 let wrapAsm = await readFile("./yoga/javascript/src_js/wrapAsm.d.ts");
-wrapAsm = wrapAsm.toString().replace(/\.\/generated\/YGEnums/g, './generated/YGEnums.js')
-await writeFile("./dist/wrapAsm.d.ts", wrapAsm)
+wrapAsm = wrapAsm
+  .toString()
+  .replace(/\.\/generated\/YGEnums/g, "./generated/YGEnums.js");
+await writeFile("./dist/wrapAsm.d.ts", wrapAsm);
 
 await copyFile(
   "./yoga/javascript/src_js/generated/YGEnums.d.ts",
@@ -19,7 +21,7 @@ await copyFile(
 
 export default [
   {
-    input: ["asm.js", "index.js"],
+    input: ["asm.js", "index.js", "node.js", "browser.js"],
     output: {
       dir: "dist",
       format: "esm",
@@ -29,9 +31,11 @@ export default [
       commonjs({
         esmExternals: true,
       }),
-      minify(defineRollupSwcMinifyOption({
-        compress: { passes: 2 }
-      }))
+      minify(
+        defineRollupSwcMinifyOption({
+          compress: { passes: 2 },
+        })
+      ),
     ],
   },
 ];

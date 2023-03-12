@@ -10,3 +10,4 @@ tmp
 dist/*
 !dist/index.d.ts
 !dist/asm.d.ts
+!dist/auto.d.ts
