@@ -1,5 +1,5 @@
 {
-  "name": "yoga-wasm-web",
+  "name": "@bitfrost/yoga-wasm-web",
   "version": "0.3.3",
   "type": "module",
   "types": "dist/index.d.ts",
@@ -26,6 +26,7 @@
     },
     "./auto": {
       "types": "./dist/auto.d.ts",
+      "bun": "./dist/bun.js",
       "browser": "./dist/browser.js",
       "default": "./dist/node.js"
     }
@@ -37,12 +38,19 @@
     "test:asm": "ASM=true vitest run --dir ./test",
     "test:wasm": "vitest run --dir ./test"
   },
-  "repository": "shuding/yoga-wasm-web",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bitfrost/yoga-wasm-web"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "license": "MIT",
   "files": [
     "dist",
     "package.json",
-    "LICENSE"
+    "LICENSE",
+    "yoga/javascript/src_js/generated"
   ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",

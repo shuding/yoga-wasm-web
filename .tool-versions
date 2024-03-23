@@ -1,0 +1,6 @@
+nodejs 20.10.0
+pnpm 8.15.5
+python 3.11.3
+# asdf plugin add emsdk https://github.com/RobLoach/asdf-emsdk.git
+emsdk 3.1.50 
+ 
