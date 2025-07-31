@@ -1,10 +1,10 @@
 import wrapAsm from "./yoga/javascript/src/wrapAssembly.js";
-import yoga from "./tmp/yoga.mjs";
+import loadYoga from "./tmp/yoga.mjs";
 
 export * from "./yoga/javascript/src/generated/YGEnums.js";
 
 export default async function (wasm) {
-  const mod = await yoga({
+  const mod = await loadYoga({
     instantiateWasm(info, receive) {
       WebAssembly.instantiate(wasm, info).then((instance) => {
         if (instance instanceof WebAssembly.Instance) {
@@ -19,7 +19,7 @@ export default async function (wasm) {
 }
 
 export async function initStreaming(response) {
-  const mod = await yoga({
+  const mod = await loadYoga({
     instantiateWasm(info, receive) {
       WebAssembly.instantiateStreaming(response, info).then(({ instance }) => {
         receive(instance);
