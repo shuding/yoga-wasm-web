@@ -6,22 +6,12 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 // copy wasm file
 await mkdir("./dist/generated/", { recursive: true });
 await copyFile("./tmp/yoga.wasm", "./dist/yoga.wasm");
-
-// copy d.ts files
-let wrapAsm = await readFile("./yoga/javascript/src_js/wrapAsm.d.ts");
-wrapAsm = wrapAsm
-  .toString()
-  .replace(/\.\/generated\/YGEnums/g, "./generated/YGEnums.js");
-await writeFile("./dist/wrapAsm.d.ts", wrapAsm);
-
-await copyFile(
-  "./yoga/javascript/src_js/generated/YGEnums.d.ts",
-  "./dist/generated/YGEnums.d.ts"
-);
+await copyFile("./yoga/javascript/src/wrapAssembly.ts", "./dist/wrapAssembly.ts");
+await copyFile("./yoga/javascript/src/generated/YGEnums.ts", "./dist/generated/YGEnums.ts");
 
 export default [
   {
-    input: ["asm.js", "index.js", "node.js", "browser.js"],
+    input: ["index.js", "node.js", "browser.js"],
     output: {
       dir: "dist",
       format: "esm",
