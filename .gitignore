@@ -11,3 +11,6 @@ dist/*
 !dist/index.d.ts
 !dist/asm.d.ts
 !dist/auto.d.ts
+
+# Emscripten SDK (installed locally)
+emsdk/

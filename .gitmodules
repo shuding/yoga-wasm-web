@@ -1,3 +1,4 @@
 [submodule "yoga"]
 	path = yoga
 	url = https://github.com/facebook/yoga.git
+	branch = v3.2.1
