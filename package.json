@@ -31,7 +31,8 @@
     }
   },
   "scripts": {
-    "build": "make && rollup -c",
+    "build-yoga": "make",
+    "build": "rm -rf dist && rollup -c",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --dir ./test"
   },
