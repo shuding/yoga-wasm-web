@@ -6,8 +6,8 @@ import initYoga from "../dist/asm.js";
 
 test("types", async () => {  
   const bin = await readFile(new URL("../dist/yoga.wasm", import.meta.url));
-  expectTypeOf(loadYoga(bin)).toMatchTypeOf<Promise<Yoga>>();
-  expectTypeOf(await loadYoga(bin)).not.toEqualTypeOf<any>();
+  expectTypeOf(loadYoga(bin)).toExtend<Promise<Yoga>>();
+  expectTypeOf(await loadYoga(bin)).not.toMatchObjectType<any>();
 
-  expectTypeOf(initYoga()).toMatchTypeOf<Yoga>();
+  expectTypeOf(initYoga()).toExtend<Yoga>();
 });
