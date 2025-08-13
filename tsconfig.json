@@ -4,7 +4,23 @@
     "moduleResolution": "node",
     "module": "ES2022",
     "target": "ES2022",
-    "strict": true
+    "strict": true,
+
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "#yoga/*": ["./yoga/javascript/src/*"],
+    }
   },
-  "include": ["./test/*"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
 }

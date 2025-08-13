@@ -2,26 +2,25 @@
   "name": "yoga-wasm-web",
   "version": "0.3.3",
   "type": "module",
-  "types": "dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "auto": [
-        "dist/auto.d.ts"
-      ]
-    }
-  },
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    "./dist/yoga.wasm": "./dist/yoga.wasm",
+    "./yoga_generated/*": "./dist/yoga_generated/yoga.wasm",
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./auto": {
-      "types": "./dist/auto.d.ts",
-      "browser": "./dist/browser.js",
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "default": "./dist/browser.js"
+    },
+    "./node": {
+      "types": "./dist/node.d.ts",
       "default": "./dist/node.js"
     }
+  },
+  "imports": {
+    "#yoga/*": "./yoga/javascript/src/*"
   },
   "scripts": {
     "build-yoga": "make",

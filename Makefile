@@ -31,12 +31,12 @@ EMCC_OPTS=--closure 1 \
 all: clean dir wasm
 
 wasm: dir
-	$(CC) $(YOGA_SRCS) $(CC_OPTS) $(EMCC_OPTS) -o tmp/yoga.mjs
+	$(CC) $(CC_OPTS) $(EMCC_OPTS) -o src/yoga_generated/yoga.mjs $(YOGA_SRCS)
 
 clean:
-	rm -rf tmp 
+	rm -rf src/yoga_generated 
 
 dir:
-	mkdir -p tmp
+	mkdir -p src/yoga_generated
 
 .PHONY: all wasm clean dir

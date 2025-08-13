@@ -1,7 +1,7 @@
-import wrapAsm from "./yoga/javascript/src/wrapAssembly.js";
-import loadYoga from "./tmp/yoga.mjs";
+import wrapAsm from "#yoga/wrapAssembly.ts";
+import loadYoga from "./yoga_generated/yoga.mjs";
 
-export * from "./yoga/javascript/src/generated/YGEnums.js";
+export * from "#yoga/generated/YGEnums.ts";
 
 export default async function (wasm) {
   const mod = await loadYoga({
