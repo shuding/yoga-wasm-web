@@ -1,70 +1,108 @@
 # yoga-wasm-web
 
-[Yoga](https://github.com/facebook/yoga) but in WebAssembly and ASM.js. 
+[Yoga](https://github.com/facebook/yoga) v3.2.1 compiled to WebAssembly for universal usage across Node.js, browsers, and edge runtimes.
+
+## Installation
+
+```sh
+npm install yoga-wasm-web
+```
 
 ## Usage
 
-Install with your package manager:
+This library provides a universal `initYoga` function. You provide the WASM binary however you obtain it:
 
-```sh
-pnpm i yoga-wasm-web
-npm i yoga-wasm-web
-yarn add yoga-wasm-web
-```
-
-### ASM.js
-
-To use the ASM.js build:
+### Node.js
 
 ```js
-import initYoga, { ALIGN_CENTER } from 'yoga-wasm-web/asm'
+import { readFile } from 'node:fs/promises';
+import { initYoga } from 'yoga-wasm-web';
 
-const Yoga = initYoga()
-const node = Yoga.Node.create()
-node.setAlignContent(ALIGN_CENTER)
+const wasmBuffer = await readFile('./node_modules/yoga-wasm-web/dist/yoga.wasm');
+const Yoga = await initYoga(wasmBuffer);
+
+const node = Yoga.Node.create();
+node.setWidth(100);
+node.setHeight(50);
+node.setAlignContent(Yoga.ALIGN_CENTER);
+node.calculateLayout();
+
+console.log(node.getComputedLayout());
+node.free(); // Clean up memory
 ```
 
-### WASM
-
-To use the WASM build (take Node.js as an example):
+### Browser
 
 ```js
-import fs from 'fs'
-import initYoga, { ALIGN_CENTER } from 'yoga-wasm-web'
+import { initYoga, initStreaming } from 'yoga-wasm-web';
 
-const Yoga = await initYoga(
-  fs.readFileSync('./node_modules/yoga-wasm-web/dist/yoga.wasm')
-)
+// Method 1: Fetch and load
+const response = await fetch('/node_modules/yoga-wasm-web/dist/yoga.wasm');
+const wasmBuffer = await response.arrayBuffer();
+const Yoga = await initYoga(wasmBuffer);
 
-const node = Yoga.Node.create()
-node.setAlignContent(ALIGN_CENTER)
+// Method 2: Streaming (recommended for large files)
+const response = fetch('/path/to/yoga.wasm');
+const Yoga = await initStreaming(response);
 ```
 
-You can use other ways to provide the WASM binary too.
+### Edge Runtimes (Cloudflare Workers, Vercel Edge)
 
+```js
+import { initYoga } from 'yoga-wasm-web';
+import wasmModule from 'yoga-wasm-web/yoga.wasm';
 
-## Contribution
-
-To develop this project locally, you need to clone the repo and fetch the yoga submodule first. Also, [emcc](https://emscripten.org/docs/getting_started/downloads.html) is required to build this project too.
-
-After that, install npm dependencies:
-
-```sh
-pnpm i
+const Yoga = await initYoga(wasmModule);
+// Use Yoga for layout calculations...
 ```
 
-And run the build script:
+## API
 
-```sh
-pnpm build
-```
+- `initYoga(wasm: ArrayBuffer | WebAssembly.Module): Promise<Yoga>`
+- `initStreaming(response: Response | Promise<Response>): Promise<Yoga>`
 
-And run the tests:
+The returned Yoga instance provides the complete [Yoga Layout API](https://yogalayout.com/). Remember to call `node.free()` or `node.freeRecursive()` to clean up memory.
 
-```sh
-pnpm test
-```
+## Development
 
-# Acknowledgements
+To develop this project locally:
 
-This project was started as **opinionated** fork from [pinqy520/yoga-layout-wasm](https://github.com/pinqy520/yoga-layout-wasm)
+1. Clone the repository and fetch the yoga submodule:
+   ```sh
+   git clone --recursive https://github.com/shuding/yoga-wasm-web.git
+   cd yoga-wasm-web
+   ```
+
+2. Install Emscripten (required for compiling to WebAssembly):
+   ```sh
+   ./setup-emscripten.sh
+   source ./emsdk/emsdk_env.sh
+   ```
+
+3. Install dependencies:
+   ```sh
+   pnpm install
+   ```
+
+4. Build the project:
+   ```sh
+   pnpm build-yoga  # Compile Yoga to WASM
+   pnpm build       # Build the library
+   ```
+
+5. Run tests:
+   ```sh
+   pnpm test
+   ```
+
+## Files Structure
+
+- `dist/index.js` - Main library entry point
+- `dist/index.d.ts` - TypeScript definitions
+- `dist/yoga.wasm` - Compiled Yoga WebAssembly binary
+- `src/index.ts` - Library source code
+- `yoga/` - Yoga layout submodule (C++ source)
+
+## Acknowledgements
+
+This project was started as an **opinionated** fork from [pinqy520/yoga-layout-wasm](https://github.com/pinqy520/yoga-layout-wasm) and has been updated to Yoga Layout v3.2.1 with modern build tooling.
