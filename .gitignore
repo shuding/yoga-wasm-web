@@ -7,7 +7,7 @@ yarn.lock
 
 build
 tmp
-dist
+!dist
 
 # Emscripten SDK (installed locally)
 emsdk/
