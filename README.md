@@ -20,29 +20,21 @@ import { initYoga } from 'yoga-wasm-web';
 
 const wasmBuffer = await readFile('./node_modules/yoga-wasm-web/dist/yoga.wasm');
 const Yoga = await initYoga(wasmBuffer);
-
-const node = Yoga.Node.create();
-node.setWidth(100);
-node.setHeight(50);
-node.setAlignContent(Yoga.ALIGN_CENTER);
-node.calculateLayout();
-
-console.log(node.getComputedLayout());
-node.free(); // Clean up memory
 ```
 
 ### Browser
 
 ```js
 import { initYoga, initStreaming } from 'yoga-wasm-web';
+import wasmModuleUrl from 'yoga-wasm-web/yoga.wasm?url';
 
 // Method 1: Fetch and load
-const response = await fetch('/node_modules/yoga-wasm-web/dist/yoga.wasm');
+const response = await fetch(wasmModuleUrl);
 const wasmBuffer = await response.arrayBuffer();
 const Yoga = await initYoga(wasmBuffer);
 
 // Method 2: Streaming (recommended for large files)
-const response = fetch('/path/to/yoga.wasm');
+const response = fetch(wasmModuleUrl);
 const Yoga = await initStreaming(response);
 ```
 
@@ -53,7 +45,6 @@ import { initYoga } from 'yoga-wasm-web';
 import wasmModule from 'yoga-wasm-web/yoga.wasm';
 
 const Yoga = await initYoga(wasmModule);
-// Use Yoga for layout calculations...
 ```
 
 ## API

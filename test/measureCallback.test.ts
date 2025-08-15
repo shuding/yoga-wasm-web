@@ -1,13 +1,9 @@
 import { vi, it, describe, expect } from "vitest";
-import { readFile } from "node:fs/promises";
-import { initYoga } from "../dist/index.js";
+import { Yoga } from "./init.js";
 
 describe.skip("measureCallback", () => {
   // Skipped due to internal implementation issues with measure functions
   it("should be called when it is provided", async () => {
-    const wasmBuffer = await readFile(new URL("../dist/yoga.wasm", import.meta.url));
-    const Yoga = await initYoga(wasmBuffer);
-    
     const callback = vi.fn(() => ({ width: 100, height: 100 }));
 
     const root = Yoga.Node.create();
@@ -26,9 +22,6 @@ describe.skip("measureCallback", () => {
   });
 
   it("should have 4 args", async () => {
-    const wasmBuffer = await readFile(new URL("../dist/yoga.wasm", import.meta.url));
-    const Yoga = await initYoga(wasmBuffer);
-    
     const callback = vi.fn(() => ({ width: 100, height: 100 }));
 
     const root = Yoga.Node.create();
@@ -54,9 +47,6 @@ describe.skip("measureCallback", () => {
   });
 
   it("should work when empty object is returned", async () => {
-    const wasmBuffer = await readFile(new URL("../dist/yoga.wasm", import.meta.url));
-    const Yoga = await initYoga(wasmBuffer);
-    
     const callback = vi.fn(() => ({}));
 
     const root = Yoga.Node.create();
@@ -75,9 +65,6 @@ describe.skip("measureCallback", () => {
   });
 
   it("should work when only width is provided", async () => {
-    const wasmBuffer = await readFile(new URL("../dist/yoga.wasm", import.meta.url));
-    const Yoga = await initYoga(wasmBuffer);
-    
     const callback = vi.fn(() => ({ width: 10 }));
 
     const root = Yoga.Node.create();
@@ -96,9 +83,6 @@ describe.skip("measureCallback", () => {
   });
 
   it("should work when only height is provided", async () => {
-    const wasmBuffer = await readFile(new URL("../dist/yoga.wasm", import.meta.url));
-    const Yoga = await initYoga(wasmBuffer);
-    
     const callback = vi.fn(() => ({ height: 10 }));
 
     const root = Yoga.Node.create();

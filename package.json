@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    "./yoga.wasm": "./dist/yoga_generated/yoga.wasm",
+    "./yoga.wasm": "./dist/yoga.wasm",
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"

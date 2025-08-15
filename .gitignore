@@ -7,10 +7,7 @@ yarn.lock
 
 build
 tmp
-dist/*
-!dist/index.d.ts
-!dist/asm.d.ts
-!dist/auto.d.ts
+dist
 
 # Emscripten SDK (installed locally)
 emsdk/
