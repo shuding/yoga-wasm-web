@@ -2,29 +2,19 @@
   "name": "yoga-wasm-web",
   "version": "0.3.3",
   "type": "module",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    "./yoga_generated/*": "./dist/yoga_generated/yoga.wasm",
+    "./yoga.wasm": "./dist/yoga_generated/yoga.wasm",
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    },
-    "./browser": {
-      "types": "./dist/browser.d.ts",
-      "default": "./dist/browser.js"
-    },
-    "./node": {
-      "types": "./dist/node.d.ts",
-      "default": "./dist/node.js"
     }
-  },
-  "imports": {
-    "#yoga/*": "./yoga/javascript/src/*"
   },
   "scripts": {
     "build-yoga": "make",
-    "build": "bunchee",
+    "build": "vite build",
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --dir ./test"
@@ -37,8 +27,12 @@
     "LICENSE"
   ],
   "devDependencies": {
-    "bunchee": "^6.6.0",
     "typescript": "^5.9.2",
+    "vite": "^7.0.6",
+    "vite-plugin-dts": "^4.2.4",
     "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "yoga-layout": "3.2.1"
   }
 }

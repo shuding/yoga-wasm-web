@@ -1,30 +1,48 @@
-import wrapAsm from "#yoga/wrapAssembly.ts";
+import wrapAssembly from "../yoga/javascript/src/wrapAssembly.ts";
 import loadYoga from "./yoga_generated/yoga.mjs";
+import type YogaLayout from 'yoga-layout';
 
-export * from "#yoga/generated/YGEnums.ts";
+export type {
+  Config,
+  DirtiedFunction,
+  MeasureFunction,
+  Node,
+} from 'yoga-layout';
 
-export default async function (wasm) {
+export * from 'yoga-layout';
+
+/**
+ * Initialize Yoga with a WebAssembly module or buffer
+ * @param wasm - WebAssembly.Module or ArrayBuffer containing the WASM binary
+ * @returns Promise<Yoga> - Initialized Yoga instance
+ */
+export async function initYoga(wasm: ArrayBuffer | WebAssembly.Module): Promise<typeof YogaLayout> {
   const mod = await loadYoga({
-    instantiateWasm(info, receive) {
-      WebAssembly.instantiate(wasm, info).then((instance) => {
-        if (instance instanceof WebAssembly.Instance) {
-          receive(instance);
+    instantiateWasm(info: WebAssembly.Imports, receive: (instance: WebAssembly.Instance) => void) {
+      WebAssembly.instantiate(wasm, info).then((result) => {
+        if (result instanceof WebAssembly.Instance) {
+          receive(result);
         } else {
-          receive(instance.instance);
+          receive((result as WebAssembly.WebAssemblyInstantiatedSource).instance);
         }
       });
     },
   });
-  return wrapAsm(mod);
+  return wrapAssembly(mod);
 }
 
-export async function initStreaming(response) {
+/**
+ * Initialize Yoga with streaming WebAssembly instantiation
+ * @param response - Response or Promise<Response> containing WASM data
+ * @returns Promise<Yoga> - Initialized Yoga instance
+ */
+export async function initStreaming(response: Response | Promise<Response>): Promise<typeof YogaLayout> {
   const mod = await loadYoga({
-    instantiateWasm(info, receive) {
+    instantiateWasm(info: WebAssembly.Imports, receive: (instance: WebAssembly.Instance) => void) {
       WebAssembly.instantiateStreaming(response, info).then(({ instance }) => {
         receive(instance);
       });
     },
   });
-  return wrapAsm(mod);
+  return wrapAssembly(mod);
 }

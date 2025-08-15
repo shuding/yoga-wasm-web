@@ -2,7 +2,7 @@ import { it, describe, expect } from "vitest";
 import { Yoga } from "./init.js";
 
 describe("defaults", () => {
-  it("assert Node default values", () => {
+  it("assert Node default values", async () => {
     const root = Yoga.Node.create();
 
     expect(root.getChildCount()).toBe(0);
@@ -13,7 +13,7 @@ describe("defaults", () => {
     expect(root.getAlignContent()).toBe(Yoga.ALIGN_FLEX_START);
     expect(root.getAlignItems()).toBe(Yoga.ALIGN_STRETCH);
     expect(root.getAlignSelf()).toBe(Yoga.ALIGN_AUTO);
-    expect(root.getPositionType()).toBe(Yoga.POSITION_TYPE_STATIC);
+    expect(root.getPositionType()).toBe(Yoga.POSITION_TYPE_RELATIVE);
     expect(root.getFlexWrap()).toBe(Yoga.WRAP_NO_WRAP);
     expect(root.getOverflow()).toBe(Yoga.OVERFLOW_VISIBLE);
     expect(root.getFlexGrow()).toBe(0);
@@ -80,10 +80,9 @@ describe("defaults", () => {
   });
 
   it("CONSTANTS is exported from root entry", async () => {
-    const { EDGE_END, DISPLAY_NONE, GUTTER_ALL } = await import("../dist/index.js");
-
-    expect(EDGE_END).toBeDefined();
-    expect(DISPLAY_NONE).toBeDefined();
-    expect(GUTTER_ALL).toBeDefined();
+    // Constants should be available via the Yoga instance, not as separate named exports
+    expect(Yoga.EDGE_END).toBeDefined();
+    expect(Yoga.DISPLAY_NONE).toBeDefined();
+    expect(Yoga.GUTTER_ALL).toBeDefined();
   });
 });

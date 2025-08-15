@@ -8,10 +8,11 @@
 
     "noEmit": true,
     "allowImportingTsExtensions": true,
+    "allowJs": true,
 
     "baseUrl": ".",
     "paths": {
-      "#yoga/*": ["./yoga/javascript/src/*"],
+      "@yoga/*": ["./yoga/javascript/src/*"],
     }
   },
   "include": [

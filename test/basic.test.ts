@@ -21,19 +21,19 @@ describe("basic", () => {
     root.insertChild(node2, 1);
 
     root.calculateLayout(500, 500);
-    expect(root.getComputedLayout()).toContain({
+    expect(root.getComputedLayout()).toMatchObject({
       top: 0,
       width: 500,
       height: 500,
     });
 
-    expect(node1.getComputedLayout()).toContain({
+    expect(node1.getComputedLayout()).toMatchObject({
       top: 150,
       width: 100,
       height: 100,
     });
 
-    expect(node2.getComputedLayout()).toContain({
+    expect(node2.getComputedLayout()).toMatchObject({
       top: 250,
       width: 100,
       height: 100,
